@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Masonry-Gallery/static/css/main.43556150.css",
+    "main.js": "/Masonry-Gallery/static/js/main.269855e4.js",
+    "index.html": "/Masonry-Gallery/index.html",
+    "main.43556150.css.map": "/Masonry-Gallery/static/css/main.43556150.css.map",
+    "main.269855e4.js.map": "/Masonry-Gallery/static/js/main.269855e4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.43556150.css",
+    "static/js/main.269855e4.js"
+  ]
+}
