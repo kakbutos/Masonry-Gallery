@@ -1,0 +1,76 @@
+.container {
+    height: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    margin-top: 300px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
+    grid-auto-rows: 10px;
+    justify-content: center;
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+span:before{
+    cursor: url('https://img.icons8.com/external-flatart-icons-outline-flatarticons/38/ffffff/external-search-instagram-flatart-icons-outline-flatarticons.png'), auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,0, .8);
+    opacity: 0;
+    transition: all 0.25s linear 0s;
+    content: '';
+}
+
+span:hover:before{
+    opacity: 1;
+}
+
+.small-img {
+    position: relative;
+    margin: 15px;
+    grid-row-end: span 22;
+    //height: 188px;
+}
+
+.medium-img {
+    position: relative;
+    grid-row-end: span 38;
+    margin: 15px;
+    //height: 350px;
+}
+
+.small-medium-img {
+    grid-row-end: span 27;
+    margin: 15px;
+    position: relative;
+    //height: 240px;
+}
+
+.large-img {
+    grid-row-end: span 57;
+    margin: 15px;
+    position: relative;
+    //height: 540px;
+}
+
+@media all and (max-width: 1200px) {
+    .container {
+        max-width: 980px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .container {
+        max-width: 86%;
+    }
+}
