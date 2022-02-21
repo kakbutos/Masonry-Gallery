@@ -1,1 +1,1 @@
-Проект - Магазин одежды на ReactJs. 
+Link: https://kakbutos.github.io/Masonry-Gallery/
