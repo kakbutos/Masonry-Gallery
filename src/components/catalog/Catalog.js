@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import InfiniteScroll from 'react-infinite-scroll-component'; 
-import 'react-lazy-load-image-component/src/effects/opacity.css';
+
 import Spinner from '../spinner/Spinner';
 
 import './Catalog.scss';
@@ -18,11 +18,11 @@ const Catalog = () => {
         let url = `${search}${clientId}`;
 
         const res = await fetch(url);
-        
+
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, status: ${res.status}`);
         } 
-        
+
         const resJson = res.json(); 
         return await resJson;
     }  
@@ -34,14 +34,13 @@ const Catalog = () => {
             ));
             setImages([...images, ...data]);
             setCurrentPage(prev => prev + 1);
-            console.log(data);
         });
     } 
 
     useEffect(() => {
         getFetch();
     }, [])
-    
+
     const randomCardClass = () => {
         let num = Math.floor(Math.random() * (Math.floor(4) - Math.ceil(1) + 1)) + Math.ceil(1);
 
@@ -56,7 +55,7 @@ const Catalog = () => {
         }
         return num;
     }
-  
+
     return (
         <div className='catalog'>
             <div className='container'>
@@ -67,17 +66,16 @@ const Catalog = () => {
                     loader={<Spinner/>}
                 >
                     <div className="wrapper">
-                        {images.map((image,index) => (                                                             
-                            <div style={{background: image.color}} className={image.size} key={index}>
-                                
-                                    <LazyLoadImage
-                                        effect='opacity'
-                                        key={image.id}
-                                        src={image.urls.regular}
-                                        alt={image.description}
-                                        style={{width: '100%', height: '100%', objectFit: 'cover', background: image.color}}
-                                    />   
-                               
+                        {images.map((image,index) => (                                                               
+                            <div className={image.size} key={index}>
+                                <span>
+                                <LazyLoadImage
+                                    key={image.id}
+                                    src={image.urls.regular}
+                                    alt={image.description}
+                                    style={{width: '100%', height: '100%', objectFit: 'cover', background: image.color}}
+                                />   
+                                </span>
                             </div>                                                      
                         ))}
                     </div>
