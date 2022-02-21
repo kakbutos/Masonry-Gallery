@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import InfiniteScroll from 'react-infinite-scroll-component'; 
-
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 import Spinner from '../spinner/Spinner';
 
 import './Catalog.scss';
@@ -34,6 +34,7 @@ const Catalog = () => {
             ));
             setImages([...images, ...data]);
             setCurrentPage(prev => prev + 1);
+            console.log(data);
         });
     } 
 
@@ -66,16 +67,17 @@ const Catalog = () => {
                     loader={<Spinner/>}
                 >
                     <div className="wrapper">
-                        {images.map((image,index) => (                                                               
-                            <div className={image.size} key={index}>
-                                <span>
-                                <LazyLoadImage
-                                    key={image.id}
-                                    src={image.urls.regular}
-                                    alt={image.description}
-                                    style={{width: '100%', height: '100%', objectFit: 'cover', background: image.color}}
-                                />   
-                                </span>
+                        {images.map((image,index) => (                                                             
+                            <div style={{background: image.color}} className={image.size} key={index}>
+                                
+                                    <LazyLoadImage
+                                        effect='opacity'
+                                        key={image.id}
+                                        src={image.urls.regular}
+                                        alt={image.description}
+                                        style={{width: '100%', height: '100%', objectFit: 'cover', background: image.color}}
+                                    />   
+                               
                             </div>                                                      
                         ))}
                     </div>
