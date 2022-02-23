@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import InfiniteScroll from 'react-infinite-scroll-component'; 
+import {useState, useEffect, useRef} from 'react';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import InfiniteScroll from 'react-infinite-scroll-component'; 
 
 import Spinner from '../spinner/Spinner';
 
@@ -11,9 +11,13 @@ const Catalog = () => {
 
     const [images, setImages] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const lastElement = useRef();
+    const observer = useRef();
 
     const getPhoto = async () => {
-        let clientId = 'Hh441n7vrXtj8O9FY5254MTXTREnB0uTxZxREEKGlOU';
+        setLoading(true);
+        let clientId = 'YgaAjnJcx_4-fvVGFDIbb5nD5eM-G3FPR9E44IX5jKM';
         let search = `https://api.unsplash.com/photos/?per_page=${perPage}&page=${currentPage}&client_id=`;
         let url = `${search}${clientId}`;
 
@@ -33,13 +37,28 @@ const Catalog = () => {
                 i.size = randomCardClass()
             ));
             setImages([...images, ...data]);
-            setCurrentPage(prev => prev + 1);
+            setLoading(false);
+            console.log(data);
         });
     } 
 
     useEffect(() => {
+        if(loading) return;
+        if(observer.current) observer.current.disconnect();
+        const callback = function(entries) {
+            if (entries[0].isIntersecting) {
+                setCurrentPage(prev => prev + 1);
+                console.log('vidno');
+            }
+        };
+        observer.current = new IntersectionObserver(callback);
+        observer.current.observe(lastElement.current);
+    }, [loading])
+    
+    useEffect(() => {
         getFetch();
-    }, [])
+        console.log(currentPage);
+    }, [currentPage])
 
     const randomCardClass = () => {
         let num = Math.floor(Math.random() * (Math.floor(4) - Math.ceil(1) + 1)) + Math.ceil(1);
@@ -57,29 +76,17 @@ const Catalog = () => {
     }
 
     return (
-        <div className='catalog'>
+        <div className='Catalog'>
             <div className='container'>
-                <InfiniteScroll
-                    dataLength={images.length}
-                    next={getFetch}
-                    hasMore={true}
-                    loader={<Spinner/>}
-                >
-                    <div className="wrapper">
-                        {images.map((image,index) => (                                                               
-                            <div className={image.size} key={index}>
-                                <span>
-                                <LazyLoadImage
-                                    key={image.id}
-                                    src={image.urls.regular}
-                                    alt={image.description}
-                                    style={{width: '100%', height: '100%', objectFit: 'cover', background: image.color}}
-                                />   
-                                </span>
-                            </div>                                                      
-                        ))}
-                    </div>
-                </InfiniteScroll>
+                <div className="wrapper">
+                    {images.map((image,index) => 
+                    (                                                        
+                        <div className={image.size} key={index} style={{background: image.color}}>
+                            <img key={image.id} src={image.urls.regular} alt={image.description}></img>  
+                        </div>                                                     
+                    ))}
+                </div>
+                {loading ? <Spinner></Spinner> : <div ref={lastElement} style={{height: 20, background: 'red'}}/>}
             </div>
         </div>
     )
@@ -87,3 +94,24 @@ const Catalog = () => {
 
 export default Catalog;
 
+// <InfiniteScroll
+// dataLength={images.length}
+// next={getFetch}
+// hasMore={true}
+// loader={<Spinner/>}
+// >
+// <div className="wrapper">
+//     {images.map((image,index) => (                                                               
+//         <div className={image.size} key={index}>
+//             <span>
+//             <LazyLoadImage
+//                 key={image.id}
+//                 src={image.urls.regular}
+//                 alt={image.description}
+//                 style={{width: '100%', height: '100%', objectFit: 'cover', background: image.color}}
+//             />   
+//             </span>
+//         </div>                                                      
+//     ))}
+// </div>
+// </InfiniteScroll> 
