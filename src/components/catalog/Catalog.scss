@@ -21,24 +21,26 @@ img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    opacity: 0;
+    transition: all 2s;
 }
 
-// span:before{
-//     cursor: url('https://img.icons8.com/external-flatart-icons-outline-flatarticons/38/ffffff/external-search-instagram-flatart-icons-outline-flatarticons.png'), auto;
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     width: 100%;
-//     height: 100%;
-//     background:rgba(0,0,0, .8);
-//     opacity: 0;
-//     transition: all 0.25s linear 0s;
-//     content: '';
-// }
+span:before{
+    cursor: url('https://img.icons8.com/external-flatart-icons-outline-flatarticons/38/ffffff/external-search-instagram-flatart-icons-outline-flatarticons.png'), auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,0, .8);
+    opacity: 0;
+    transition: all 0.25s linear 0s;
+    content: '';
+}
 
-// span:hover:before{
-//     opacity: 1;
-// }
+span:hover:before{
+    opacity: 1;
+}
 
 .small-img {
     position: relative;

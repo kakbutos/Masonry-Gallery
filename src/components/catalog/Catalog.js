@@ -75,14 +75,22 @@ const Catalog = () => {
         return num;
     }
 
+    function imgLoaded(event) {
+        console.log(event.target);
+        console.log('imgloaded');
+        event.target.style.opacity = '1';
+    }
+
     return (
         <div className='Catalog'>
             <div className='container'>
                 <div className="wrapper">
                     {images.map((image,index) => 
-                    (                                                        
+                    (                                                     
                         <div className={image.size} key={index} style={{background: image.color}}>
-                            <img key={image.id} src={image.urls.regular} alt={image.description}></img>  
+                            <span>
+                                <img onLoad={imgLoaded} key={image.id} src={image.urls.regular} alt={image.description}></img> 
+                            </span> 
                         </div>                                                     
                     ))}
                 </div>
