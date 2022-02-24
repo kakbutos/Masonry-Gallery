@@ -9,7 +9,6 @@
 }
 
 .wrapper {
-    // margin-top: 300px;
     padding-top: 300px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
@@ -25,8 +24,12 @@ img {
     transition: all 2s;
 }
 
-span:before{
+.hoverImg {
     cursor: url('https://img.icons8.com/external-flatart-icons-outline-flatarticons/38/ffffff/external-search-instagram-flatart-icons-outline-flatarticons.png'), auto;
+}
+
+.hoverImg:before{
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
@@ -35,10 +38,9 @@ span:before{
     background:rgba(0,0,0, .8);
     opacity: 0;
     transition: all 0.25s linear 0s;
-    content: '';
 }
 
-span:hover:before{
+.hoverImg:hover:before{
     opacity: 1;
 }
 
