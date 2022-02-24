@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Masonry-Gallery/static/css/main.cdeaf40e.css",
+    "main.css": "/Masonry-Gallery/static/css/main.2b229ef1.css",
     "main.js": "/Masonry-Gallery/static/js/main.8ef451f4.js",
     "index.html": "/Masonry-Gallery/index.html",
-    "main.cdeaf40e.css.map": "/Masonry-Gallery/static/css/main.cdeaf40e.css.map",
+    "main.2b229ef1.css.map": "/Masonry-Gallery/static/css/main.2b229ef1.css.map",
     "main.8ef451f4.js.map": "/Masonry-Gallery/static/js/main.8ef451f4.js.map"
   },
   "entrypoints": [
-    "static/css/main.cdeaf40e.css",
+    "static/css/main.2b229ef1.css",
     "static/js/main.8ef451f4.js"
   ]
 }
